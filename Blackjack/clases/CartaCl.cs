@@ -15,12 +15,6 @@ namespace blackjack.clases
         private static Random rand = new Random();
         private string[] palos = { "♠", "💎", "❤", "🔶" };
 
-        public CartaCl(string valor, string palo)
-        {
-            Valor = valor;
-            Palo = palo;
-        }
-
         public int valorCarta()
         {
             return int.Parse(Valor);

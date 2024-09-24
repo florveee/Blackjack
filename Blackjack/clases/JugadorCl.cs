@@ -9,8 +9,8 @@ namespace blackjack.clases
 {
     public class JugadorCl
     {
-        public List<CartaCl> Cartas { get; private set; }
-        public int Puntaje { get; private set; }
+        public List<CartaCl> Cartas { get; set; }
+        public int Puntaje { get; set; }
 
         public JugadorCl()
         {
@@ -28,16 +28,6 @@ namespace blackjack.clases
         {
             Cartas.Clear();
             Puntaje = 0;
-        }
-
-        public bool SePasoDe21()
-        {
-            return Puntaje > 21;
-        }
-
-        public bool TieneBlackjack()
-        {
-            return Puntaje == 21;
         }
     }
 }
