@@ -56,6 +56,9 @@ namespace Blackjack.vistas
         }
         private async void EsconderTirada()
         {
+            lblSeguir.Visible = false;
+            btSeguir.Visible = false;
+            btIrse.Visible = false;
             lbltucarta.Visible = false;
             lblcartacr.Visible = false;
             panelJ1.Visible = false;
@@ -140,7 +143,6 @@ namespace Blackjack.vistas
         }
         private async void OtraCarta()
         {
-            lblPuntJug.Visible = false;
 
             cartaJrand = new CartaCl();
             Jugador.AgregarCarta(cartaJrand);
@@ -157,19 +159,18 @@ namespace Blackjack.vistas
             lblPuntJug.Text = "Tu puntaje es: " + Jugador.Puntaje.ToString();
             lblPuntJug.Visible = true;
 
-            if (Jugador.Puntaje > 21)
+            if (Jugador.Puntaje >= 21)
             {
                 BtOtraC.Enabled = false;
                 BtPlantarse.Enabled = false;
-
                 TiradaCroupier();
-                SeguirJugando();
             }
         }
         private async void TiradaCroupier()
         {
             while (Croupier.Puntaje < 17)
             {
+                await Task.Delay(1000);
                 cartaCrand = new CartaCl();
                 Croupier.AgregarCarta(cartaCrand);
 
@@ -183,35 +184,32 @@ namespace Blackjack.vistas
                 await Task.Delay(1500);
 
                 panelCran.Visible = true;
+                lblPuntCr.Text = "El puntaje del croupier es: " + Croupier.Puntaje.ToString();
             }
 
-            lblPuntCr.Text = "El puntaje del croupier es: " + Croupier.Puntaje.ToString();
-
+            Ganador();
             lblotracarta.Visible = false;
             BtOtraC.Visible = false;
             BtPlantarse.Visible = false;
-
-            partida.Ganador();
+            lblResultado.Visible = true;
 
             await Task.Delay(2000);
+            SeguirJugando();
         }
         private void BtPlantarse_Click(object sender, EventArgs e)
         {
             BtOtraC.Enabled = false;
             BtPlantarse.Enabled = false;
             TiradaCroupier();
-            SeguirJugando();
         }
 
         private void SeguirJugando()
         {
             panelJ1.Visible = false;
             panelJ2.Visible = false;
-            panelCran.Visible = false;
             lblotracarta.Visible = false;
             BtOtraC.Visible = false;
             BtPlantarse.Visible = false;
-            lblResultado.Visible = false;
             lblSeguir.Visible = true;
             btSeguir.Visible = true;
             btIrse.Visible = true;
@@ -228,11 +226,46 @@ namespace Blackjack.vistas
 
         private void btIrse_Click(object sender, EventArgs e)
         {
-            menu menu = new menu(nombre);
+            Saludo fSaludo = new Saludo();
 
-            menu.Show();
-
-            this.Hide();
+            this.Close();
+            fSaludo.Show();
+        }
+        public void Ganador()
+        {
+            lblResultado.Visible = true;
+            if (Croupier.Puntaje > 21 && Jugador.Puntaje < 21)
+            {
+                lblResultado.Text = "Ganaste. El croupier se pasó de 21. 🥳";
+            }
+            else if (Jugador.Puntaje > 21 && Croupier.Puntaje < 21)
+            {
+                lblResultado.Text = "Perdiste. Te pasaste de 21. 😔";
+            }
+            else if (Jugador.Puntaje == 21)
+            {
+                lblResultado.Text = "Ganaste. Obtuviste un Blackjack. 🥳";
+            }
+            else if (Croupier.Puntaje == 21)
+            {
+                lblResultado.Text = "Perdiste. El croupier obtuvo un Blackjack. 😔";
+            }
+            else if (Jugador.Puntaje > Croupier.Puntaje && Jugador.Puntaje <= 21)
+            {
+                lblResultado.Text = "Ganaste. El croupier perdió por puntos. 🥳";
+            }
+            else if (Croupier.Puntaje > Jugador.Puntaje && Croupier.Puntaje <= 21)
+            {
+                lblResultado.Text = "Perdiste. El croupier te ganó por puntos. 😔";
+            }
+            else if (Jugador.Puntaje == Croupier.Puntaje)
+            {
+                lblResultado.Text = "Es un empate. 😐";
+            }
+            else if (Jugador.Puntaje > 21 && Croupier.Puntaje > 21)
+            {
+                lblResultado.Text = "Ambos se pasaron. 😐";
+            }
         }
     }
 }

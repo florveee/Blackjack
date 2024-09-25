@@ -69,6 +69,12 @@
     <Compile Include="vistas\Partida.Designer.cs">
       <DependentUpon>Partida.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistas\Saludo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistas\Saludo.Designer.cs">
+      <DependentUpon>Saludo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -86,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vistas\Partida.resx">
       <DependentUpon>Partida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\Saludo.resx">
+      <DependentUpon>Saludo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
