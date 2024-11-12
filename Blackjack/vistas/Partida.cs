@@ -1,4 +1,5 @@
 ﻿using blackjack.clases;
+using Blackjack.clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace Blackjack.vistas
 {
     public partial class Partida : Form
     {
-        private PartidaCl partida;
+        public PartidaCl partida;
 
         private CartaCl cartaJ1;
         private CartaCl cartaJ2;
@@ -25,12 +26,13 @@ namespace Blackjack.vistas
         private JugadorCl Jugador;
         private JugadorCl Croupier;
         private string nombre;
+        public Tabla tabla;
 
         public Partida()
         {
             InitializeComponent();
 
-            partida = new PartidaCl(lblResultado);
+            partida = new PartidaCl();
 
             cartaJ1 = new CartaCl();
             cartaJ2 = new CartaCl();
@@ -70,6 +72,7 @@ namespace Blackjack.vistas
             lblotracarta.Visible = false;
             BtOtraC.Visible = false;
             BtPlantarse.Visible = false;
+            btHistorial.Visible = false;
 
             await Task.Delay(2000);
 
@@ -188,6 +191,8 @@ namespace Blackjack.vistas
             }
 
             Ganador();
+            tabla.InsertPuntaje(partida);
+
             lblotracarta.Visible = false;
             BtOtraC.Visible = false;
             BtPlantarse.Visible = false;
@@ -213,6 +218,7 @@ namespace Blackjack.vistas
             lblSeguir.Visible = true;
             btSeguir.Visible = true;
             btIrse.Visible = true;
+            btHistorial.Visible = true;
         }
 
         private void btSeguir_Click(object sender, EventArgs e)
@@ -231,41 +237,47 @@ namespace Blackjack.vistas
             this.Close();
             fSaludo.Show();
         }
-        public void Ganador()
+        public string Ganador()
         {
             lblResultado.Visible = true;
+            string resultado = null;
+
             if (Croupier.Puntaje > 21 && Jugador.Puntaje < 21)
             {
-                lblResultado.Text = "Ganaste. El croupier se pasó de 21. 🥳";
+                resultado = "Ganaste. El croupier se pasó de 21. 🥳";
             }
             else if (Jugador.Puntaje > 21 && Croupier.Puntaje < 21)
             {
-                lblResultado.Text = "Perdiste. Te pasaste de 21. 😔";
+                resultado = "Perdiste. Te pasaste de 21. 😔";
             }
             else if (Jugador.Puntaje == 21)
             {
-                lblResultado.Text = "Ganaste. Obtuviste un Blackjack. 🥳";
+                resultado = "Ganaste. Obtuviste un Blackjack. 🥳";
             }
             else if (Croupier.Puntaje == 21)
             {
-                lblResultado.Text = "Perdiste. El croupier obtuvo un Blackjack. 😔";
+                resultado = "Perdiste. El croupier obtuvo un Blackjack. 😔";
             }
             else if (Jugador.Puntaje > Croupier.Puntaje && Jugador.Puntaje <= 21)
             {
-                lblResultado.Text = "Ganaste. El croupier perdió por puntos. 🥳";
+                resultado = "Ganaste. El croupier perdió por puntos. 🥳";
             }
             else if (Croupier.Puntaje > Jugador.Puntaje && Croupier.Puntaje <= 21)
             {
-                lblResultado.Text = "Perdiste. El croupier te ganó por puntos. 😔";
+                resultado = "Perdiste. El croupier te ganó por puntos. 😔";
             }
             else if (Jugador.Puntaje == Croupier.Puntaje)
             {
-                lblResultado.Text = "Es un empate. 😐";
+                resultado = "Es un empate. 😐";
             }
             else if (Jugador.Puntaje > 21 && Croupier.Puntaje > 21)
             {
-                lblResultado.Text = "Ambos se pasaron. 😐";
+                resultado = "Ambos se pasaron. 😐";
             }
+
+            lblResultado.Text = resultado;  
+            lblResultado.Visible = true;    
+            return resultado;
         }
     }
 }

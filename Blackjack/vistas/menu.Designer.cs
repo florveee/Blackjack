@@ -41,6 +41,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btPuntajes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblSaludo
@@ -165,12 +166,24 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "🔶";
             // 
+            // btPuntajes
+            // 
+            this.btPuntajes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPuntajes.Location = new System.Drawing.Point(534, 504);
+            this.btPuntajes.Name = "btPuntajes";
+            this.btPuntajes.Size = new System.Drawing.Size(222, 53);
+            this.btPuntajes.TabIndex = 12;
+            this.btPuntajes.Text = "Historial de partidas";
+            this.btPuntajes.UseVisualStyleBackColor = true;
+            this.btPuntajes.Click += new System.EventHandler(this.btPuntajes_Click);
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.ClientSize = new System.Drawing.Size(1345, 621);
+            this.Controls.Add(this.btPuntajes);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -185,7 +198,7 @@
             this.Controls.Add(this.lblPreg);
             this.Controls.Add(this.lblSaludo);
             this.Name = "menu";
-            this.Text = "menu";
+            this.Text = " ";
             this.ResumeLayout(false);
 
         }
@@ -205,5 +218,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btPuntajes;
     }
 }

@@ -24,6 +24,8 @@ namespace Blackjack.vistas
 
             menu menu1 = new menu(nombre);
 
+            Saludo saludo = new Saludo(nombre);
+
             lblTitulo.Enabled = false;
             lblNombre.Enabled = false;
             txtNombre.Enabled = false;

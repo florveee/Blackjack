@@ -49,6 +49,7 @@
     <Compile Include="clases\CartaCl.cs" />
     <Compile Include="clases\JugadorCl.cs" />
     <Compile Include="clases\PartidaCl.cs" />
+    <Compile Include="clases\Tabla.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="vistas\login.cs">

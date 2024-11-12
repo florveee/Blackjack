@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blackjack.clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,8 @@ namespace Blackjack.vistas
 {
     public partial class menu : Form
     {
-        private string nombre;
+        public string nombre;
+        public Tabla tabla;
 
         public menu(string nombre)
         {
@@ -54,6 +56,11 @@ namespace Blackjack.vistas
             await Task.Delay(2000);
 
             Application.Exit();
+        }
+
+        private void btPuntajes_Click(object sender, EventArgs e)
+        {
+            tabla.LeerArchivo();
         }
     }
 }

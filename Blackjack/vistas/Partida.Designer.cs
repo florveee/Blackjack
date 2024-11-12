@@ -64,6 +64,7 @@
             this.lblSeguir = new System.Windows.Forms.Label();
             this.btSeguir = new System.Windows.Forms.Button();
             this.btIrse = new System.Windows.Forms.Button();
+            this.btHistorial = new System.Windows.Forms.Button();
             this.panelJ1.SuspendLayout();
             this.panelJ2.SuspendLayout();
             this.panelC1.SuspendLayout();
@@ -414,12 +415,23 @@
             this.btIrse.UseVisualStyleBackColor = true;
             this.btIrse.Click += new System.EventHandler(this.btIrse_Click);
             // 
+            // btHistorial
+            // 
+            this.btHistorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btHistorial.Location = new System.Drawing.Point(1144, 552);
+            this.btHistorial.Name = "btHistorial";
+            this.btHistorial.Size = new System.Drawing.Size(147, 48);
+            this.btHistorial.TabIndex = 7;
+            this.btHistorial.Text = "Historial de partidas";
+            this.btHistorial.UseVisualStyleBackColor = true;
+            // 
             // Partida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.ClientSize = new System.Drawing.Size(1345, 621);
+            this.Controls.Add(this.btHistorial);
             this.Controls.Add(this.btIrse);
             this.Controls.Add(this.BtPlantarse);
             this.Controls.Add(this.btSeguir);
@@ -489,5 +501,6 @@
         private System.Windows.Forms.Label lblSeguir;
         private System.Windows.Forms.Button btSeguir;
         private System.Windows.Forms.Button btIrse;
+        private System.Windows.Forms.Button btHistorial;
     }
 }
